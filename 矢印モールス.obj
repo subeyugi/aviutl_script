@@ -1,0 +1,40 @@
+local function drawLine(x1, y1, x2, y2, w)
+    local theta = -math.atan2(y2 - y1, x2 - x1)
+    local vertex_x1 = x1 + w * math.cos(-theta)
+    local vertex_y1 = y1 + w * math.sin(-theta)
+    local vertex_x2 = x1 - w * math.sin(theta)
+    local vertex_y2 = y1 - w * math.cos(theta)
+    local vertex_x3 = x2 + w * math.sin(theta)
+    local vertex_y3 = y2 + w * math.cos(theta)
+    local vertex_x4 = x2 - w * math.sin(theta)
+    local vertex_y4 = y2 - w * math.cos(theta)
+
+    obj.load("figure", "â~", 0xFFFFFF, 20)
+    obj.draw(vertex_x1, vertex_y1)
+    obj.draw(vertex_x2, vertex_y2)
+    obj.draw(vertex_x3, vertex_y3)
+    obj.draw(vertex_x4, vertex_y4)
+    --debug_print(string.format("x1=%d, y1=%d, x2_=%d, y2_=%d, w=%d", x1, y1, vertex_x1, vertex_y1, w))
+end
+
+--track0:å¬êî,1,16,3
+--track1:ïù,0,1000,50
+--dialog:ç¿ïW,pos={0,100,200,300,400,500};
+
+num=obj.track0
+w = obj.track1/2
+obj.setanchor("pos", num, "line")
+obj.load('figure', "â~", 0xFFFFFF, 50)
+local x1 = pos[1]
+local y1 = pos[2]
+local x2 = pos[3]
+local y2 = pos[4]
+drawLine(x1, y1, x2 ,y2, w)
+debug_print(string.format("x1=%d, y1=%d, x2=%d, y2=%d, w=%d", x1, y1, x2, y2, w))
+
+--[[ 
+for i=0, 1 do
+
+    debug_print(string.format("x1=%d, y1=%d, x2=%d, y2=%d", x1, y1, x2, y2))
+    --obj.drawpoly(x1, y1, 0,     x1+5, y1, 0,    x2+5, y2, 0,    x2, y2, 0)
+end  ]]
